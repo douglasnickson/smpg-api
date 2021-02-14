@@ -1,16 +1,20 @@
 require('dotenv/config');
 
 import axios from '@services/AxiosService';
-import { URLSearchParams } from 'url';
-import { ITokenService } from "@services/ITokenService";
-import { Token } from "src/entities/Token";
-import { AxiosRequestConfig } from 'axios';
+import { ITokenService } from '@services/ITokenService';
+import { Token } from 'src/entities/Token';
+import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
 
 export class SpotifyService implements ITokenService {
-
-  async getToken(url: string, data: URLSearchParams, headers: AxiosRequestConfig): Promise<Token> {
+  async getToken(
+    getStreamingServiceToken: GetStreamingServiceToken
+  ): Promise<Token> {
     try {
-      const response = await axios.post(url, data, headers);
+      const response = await axios.post(
+        getStreamingServiceToken.url,
+        getStreamingServiceToken.params,
+        getStreamingServiceToken.headers
+      );
 
       const accessToken = response.data.access_token;
       const tokenType = response.data.token_type;
@@ -23,13 +27,12 @@ export class SpotifyService implements ITokenService {
         tokenType,
         expiresIn,
         refreshToken,
-        scope
+        scope,
       });
 
       return token;
-
     } catch (e) {
-      throw Error (e.response.data.error_description);
+      throw Error(e.response.data.error_description);
     }
   }
 }

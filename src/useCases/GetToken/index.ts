@@ -1,6 +1,6 @@
-import { SpotifyService } from "@services/implementations/SpotifyService";
-import { GetTokenController } from "./GetTokenController";
-import { GetTokenUseCase } from "./GetTokenUseCase";
+import { SpotifyService } from '@services/implementations/SpotifyService';
+import { GetTokenController } from './GetTokenController';
+import { GetTokenUseCase } from './GetTokenUseCase';
 
 const spotifyService = new SpotifyService();
 

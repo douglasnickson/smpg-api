@@ -9,7 +9,7 @@
     "outDir": "./dist",
     "rootDir": "./",
     "removeComments": true,
-    "strict": true,
+    "strict": false,
     "baseUrl": ".",
     "paths": {
       "@controllers/*": [
@@ -26,6 +26,12 @@
       ],
       "@services/*": [
         "./src/services/*"
+      ],
+      "@entities/*": [
+        "./src/entities/*"
+      ],
+      "@useCases/*": [
+        "./src/useCases/*"
       ]
     },
     "typeRoots": [
@@ -38,7 +44,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "sourceMap": true
+    "sourceMap": true,
   },
   "include": [
     "src/**/*"

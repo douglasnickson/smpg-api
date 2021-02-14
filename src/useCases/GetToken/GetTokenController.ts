@@ -1,25 +1,19 @@
-import { Request, Response } from "express";
-import { GetTokenUseCase } from "./GetTokenUseCase";
-
+import { Response } from 'express';
+import { GetTokenUseCase } from '@useCases/GetToken/GetTokenUseCase';
+import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
 export class GetTokenController {
   constructor(private getToken: GetTokenUseCase) {}
 
-  async handle(request: Request, response: Response): Promise<Response> {
-    const {clientId, clientSecret, grantType, redirectUri, code} = request.body;
-
+  async handle(
+    response: Response,
+    streamingService: GetStreamingServiceToken
+  ): Promise<Response> {
     try {
-      await this.getToken.execute({
-        clientId,
-        clientSecret,
-        grantType,
-        redirectUri,
-        code
-      });
+      await this.getToken.execute(streamingService);
       return response.status(200).send();
-
     } catch (err) {
       return response.status(400).json({
-        message: err.message || 'Unexpected error'
+        message: err.message || 'Unexpected error',
       });
     }
   }

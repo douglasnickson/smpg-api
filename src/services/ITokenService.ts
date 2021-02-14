@@ -1,7 +1,5 @@
-import { URLSearchParams } from 'url';
-import { AxiosRequestConfig } from 'axios';
-import { Token } from "src/entities/Token";
-
+import { Token } from 'src/entities/Token';
+import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
 export interface ITokenService {
-  getToken(url: string, data: URLSearchParams, headers: AxiosRequestConfig): Promise<Token>;
+  getToken(getStreamingServiceToken: GetStreamingServiceToken): Promise<Token>;
 }

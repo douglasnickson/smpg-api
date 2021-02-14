@@ -1,8 +1,6 @@
-import { GetToken } from "src/entities/GetToken";
-import { ITokenService } from "@services/ITokenService";
-import { GetTokenRequestDTO } from "./GetTokenDTO";
-import { Params } from "src/entities/Params";
-
+import { ITokenService } from '@services/ITokenService';
+import { Token } from 'src/entities/Token';
+import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
 export class GetTokenUseCase {
   private tokenService: ITokenService;
 
@@ -10,15 +8,9 @@ export class GetTokenUseCase {
     this.tokenService = tokenService;
   }
 
-  async execute(data: GetTokenRequestDTO) {
-    const token = new GetToken(data);
-    const params = new Params(token)
-
-    const url: string = process.env.TOKEN_URL!;
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    };
-
-    return await this.tokenService.getToken(url, params.getParams(), { headers });
+  async execute(
+    getStreamingServiceToken: GetStreamingServiceToken
+  ): Promise<Token> {
+    return await this.tokenService.getToken(getStreamingServiceToken);
   }
 }
