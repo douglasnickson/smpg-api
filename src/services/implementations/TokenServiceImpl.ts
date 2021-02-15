@@ -5,7 +5,7 @@ import { ITokenService } from '@services/ITokenService';
 import { Token } from 'src/entities/Token';
 import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
 
-export class SpotifyService implements ITokenService {
+export class TokenServiceImpl implements ITokenService {
   async getToken(
     getStreamingServiceToken: GetStreamingServiceToken
   ): Promise<Token> {
