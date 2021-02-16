@@ -8,6 +8,15 @@ export class SearchUseCase {
 
   async execute(searchDTO: SearchDTO): Promise<Response> {
     const search = new Search(searchDTO);
+
+    if (!search.isLimitValid()) {
+      throw Error('Limit is not valid, Minimum: 1 and Maximum: 50');
+    }
+
+    if (!search.isOffsetValid()) {
+      throw Error('Offset is not valid, Minimum: 0 and Maximum: 1000');
+    }
+
     return await this.searchService.search(search);
   }
 }

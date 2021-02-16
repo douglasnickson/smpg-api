@@ -55,4 +55,12 @@ export default class Search {
 
     return objWithNoEmpyParams;
   }
+
+  isLimitValid(): boolean {
+    return this.limit > 0 && this.limit <= 50;
+  }
+
+  isOffsetValid(): boolean {
+    return this.offset >= 0 && this.offset <= 1000;
+  }
 }
