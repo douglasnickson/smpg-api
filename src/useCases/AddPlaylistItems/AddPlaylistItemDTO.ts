@@ -1,6 +1,6 @@
-export interface CreatePlaylistDTO {
+export interface AddPlaylistItemDTO {
   token: string;
   playlistId: string;
   position: string;
-  uris: boolean;
+  uris: string;
 }
