@@ -1,8 +1,9 @@
 import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
-import { SpotifyToken } from '@entities/SpotifyToken';
 import { Router } from 'express';
+import { SpotifyToken } from '@entities/SpotifyToken';
 import { getTokenController } from './useCases/GetToken';
 import { searchController } from '@useCases/Search';
+import { createPlaylistController } from '@useCases/CreatePlaylist';
 
 const routes = Router();
 
@@ -11,8 +12,20 @@ routes.post('/authorization/spotify', (request, response) => {
   return getTokenController.handle(response, spotify);
 });
 
-routes.get('/artists', (request, response) => {
+routes.get('/search', (request, response) => {
   return searchController.handle(request, response);
+});
+
+routes.get('/search/album', (request, response) => {
+  return searchController.handle(request, response);
+});
+
+routes.get('/search/track', (request, response) => {
+  return searchController.handle(request, response);
+});
+
+routes.post('/playlist/create', (request, response) => {
+  return createPlaylistController.handle(request, response);
 });
 
 export default routes;

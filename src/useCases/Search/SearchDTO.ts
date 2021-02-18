@@ -1,9 +1,10 @@
 export interface SearchDTO {
   token: string;
   q: string;
-  type: 'album' | 'artist' | 'playlist' | 'track' | 'show' | 'episode';
+  type: string;
   market?: string;
   limit?: number;
   offset?: number;
   includeExternal?: string;
+  operationType?: string;
 }

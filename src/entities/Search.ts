@@ -9,25 +9,44 @@ export default class Search {
   public limit: number;
   public offset: number;
   public includeExternal: string;
+  public operationType: string;
+  private headers: AxiosRequestConfig;
   private params: AxiosRequestConfig;
 
   constructor(props: SearchDTO) {
     Object.assign(this, props);
     this.setParams();
-  }
-
-  public getUrl(): string {
-    return process.env.API_URL_SPOTIFY + '/search';
-  }
-
-  public getHeaders(): AxiosRequestConfig {
-    const headers = {
+    this.headers = {
       headers: {
         Authorization: `${'Bearer ' + this.token}`,
         'Content-Type': 'application/json',
       },
     };
-    return headers;
+  }
+
+  public getUrl(): string {
+    let url = process.env.API_URL_SPOTIFY;
+    switch (this.operationType) {
+      case 'album':
+        url += '/artists/' + this.q + '/' + 'albums';
+        break;
+      case 'track':
+        url += '/albums/' + this.q + '/' + 'tracks';
+        break;
+      default:
+        url += '/search';
+        break;
+    }
+
+    return url;
+  }
+
+  public setHeaders(headers: AxiosRequestConfig): void {
+    this.headers = headers;
+  }
+
+  public getHeaders(): AxiosRequestConfig {
+    return this.headers;
   }
 
   private setParams(): void {
