@@ -1,16 +1,16 @@
-import { Response } from 'express';
+import { StreamingServiceTokenAbstract } from '@entities/StreamingServiceTokenAbstract';
+import { Request, Response } from 'express';
 import { GetTokenUseCase } from '@useCases/GetToken/GetTokenUseCase';
-import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
+import { SpotifyToken } from '@entities/SpotifyToken';
+import { Token } from '@entities/Token';
 export class GetTokenController {
   constructor(private getToken: GetTokenUseCase) {}
 
-  async handle(
-    response: Response,
-    streamingService: GetStreamingServiceToken
-  ): Promise<Response> {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const spotify: StreamingServiceTokenAbstract = new SpotifyToken(request);
     try {
-      await this.getToken.execute(streamingService);
-      return response.status(200).send();
+      const token: Token = await this.getToken.execute(spotify);
+      return response.status(200).send(token);
     } catch (err) {
       return response.status(400).json({
         message: err.message || 'Unexpected error',

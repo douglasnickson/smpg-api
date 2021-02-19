@@ -1,19 +1,19 @@
 require('dotenv/config');
 
 import axios from '@services/AxiosService';
+import { StreamingServiceTokenAbstract } from '@entities/StreamingServiceTokenAbstract';
 import { ITokenService } from '@services/ITokenService';
 import { Token } from 'src/entities/Token';
-import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
 
 export class TokenServiceImpl implements ITokenService {
   async getToken(
-    getStreamingServiceToken: GetStreamingServiceToken
+    streamingServiceTokenAbstract: StreamingServiceTokenAbstract
   ): Promise<Token> {
     try {
       const response = await axios.post(
-        getStreamingServiceToken.url,
-        getStreamingServiceToken.params,
-        getStreamingServiceToken.headers
+        streamingServiceTokenAbstract.url,
+        streamingServiceTokenAbstract.params,
+        streamingServiceTokenAbstract.getFormHeader()
       );
 
       const accessToken = response.data.access_token;
@@ -32,7 +32,7 @@ export class TokenServiceImpl implements ITokenService {
 
       return token;
     } catch (e) {
-      throw Error(e.response.data.error_description);
+      throw Error(e);
     }
   }
 }

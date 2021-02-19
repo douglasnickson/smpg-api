@@ -1,15 +1,15 @@
 import { Request } from 'express';
 import { URLSearchParams } from 'url';
-import GetStreamingServiceToken from './GetStreamingServiceToken';
-import CreateTokenRequest from './CreateTokenRequest';
-
-export class SpotifyToken extends GetStreamingServiceToken {
-  public params: URLSearchParams;
-
+import { StreamingServiceTokenAbstract } from './StreamingServiceTokenAbstract';
+export class SpotifyToken extends StreamingServiceTokenAbstract {
   constructor(request: Request) {
-    const createTokenRequest = new CreateTokenRequest('spotify');
-    super(createTokenRequest.getUrl(), createTokenRequest.getHeaders());
+    super();
     super.setParams(this.parseParams(request));
+    super.setUrl(this.parseUrl());
+  }
+
+  parseUrl(): string {
+    return process.env.TOKEN_URL_SPOTIFY;
   }
 
   parseParams(request: Request): URLSearchParams {

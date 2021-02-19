@@ -1,3 +1,4 @@
+import { HeadersRequest } from '@entities/HeadersRequest';
 import Search from '@entities/Search';
 import { ISearchService } from '@services/ISearchService';
 import { Response } from 'express';
@@ -8,6 +9,8 @@ export class SearchUseCase {
 
   async execute(searchDTO: SearchDTO): Promise<Response> {
     const search = new Search(searchDTO);
+    const header = new HeadersRequest(search.token);
+    search.setHeaders(header.getJsonHeader());
 
     if (!search.isLimitValid()) {
       throw Error('Limit is not valid, Minimum: 1 and Maximum: 50');

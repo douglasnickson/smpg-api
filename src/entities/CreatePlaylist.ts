@@ -14,12 +14,6 @@ export class CreatePlaylist {
   constructor(props: CreatePlaylistDTO) {
     Object.assign(this, props);
     this.setParams();
-    this.headers = {
-      headers: {
-        Authorization: `${'Bearer ' + this.token}`,
-        'Content-Type': 'application/json',
-      },
-    };
   }
 
   public getUrl(): string {

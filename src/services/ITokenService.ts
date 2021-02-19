@@ -1,5 +1,7 @@
 import { Token } from 'src/entities/Token';
-import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
+import { StreamingServiceTokenAbstract } from '@entities/StreamingServiceTokenAbstract';
 export interface ITokenService {
-  getToken(getStreamingServiceToken: GetStreamingServiceToken): Promise<Token>;
+  getToken(
+    streamingServiceTokenAbstract: StreamingServiceTokenAbstract
+  ): Promise<Token>;
 }

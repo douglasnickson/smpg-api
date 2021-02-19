@@ -1,6 +1,6 @@
 import { ITokenService } from '@services/ITokenService';
 import { Token } from 'src/entities/Token';
-import GetStreamingServiceToken from '@entities/GetStreamingServiceToken';
+import { StreamingServiceTokenAbstract } from '@entities/StreamingServiceTokenAbstract';
 export class GetTokenUseCase {
   private tokenService: ITokenService;
 
@@ -9,8 +9,8 @@ export class GetTokenUseCase {
   }
 
   async execute(
-    getStreamingServiceToken: GetStreamingServiceToken
+    streamingServiceTokenAbstract: StreamingServiceTokenAbstract
   ): Promise<Token> {
-    return await this.tokenService.getToken(getStreamingServiceToken);
+    return await this.tokenService.getToken(streamingServiceTokenAbstract);
   }
 }

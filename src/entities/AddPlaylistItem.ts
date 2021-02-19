@@ -11,12 +11,6 @@ export class AddPlaylistItem {
 
   constructor(addPlaylistItem: AddPlaylistItemDTO) {
     Object.assign(this, addPlaylistItem);
-    this.headers = {
-      headers: {
-        Authorization: `${'Bearer ' + this.token}`,
-        'Content-Type': 'application/json',
-      },
-    };
   }
   public getUrl(): string {
     return (

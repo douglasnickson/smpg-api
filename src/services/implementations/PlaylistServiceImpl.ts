@@ -9,7 +9,7 @@ export class PlaylistServiceImpl implements IPlaylistService {
       const { params } = createPlaylist.getParams();
       const response = await axios.post(
         createPlaylist.getUrl(),
-        params.uris,
+        params,
         createPlaylist.getHeaders()
       );
       return response.data;
@@ -22,7 +22,7 @@ export class PlaylistServiceImpl implements IPlaylistService {
       const { params } = addPlaylistItem.getParams();
       const response = await axios.post(
         addPlaylistItem.getUrl(),
-        params,
+        params.uris,
         addPlaylistItem.getHeaders()
       );
       return response.data;
