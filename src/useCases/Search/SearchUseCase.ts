@@ -1,5 +1,5 @@
 import { HeadersRequest } from '@entities/HeadersRequest';
-import Search from '@entities/Search';
+import { Search } from '@entities/Search';
 import { ISearchService } from '@services/ISearchService';
 import { Response } from 'express';
 import { SearchDTO } from './SearchDTO';

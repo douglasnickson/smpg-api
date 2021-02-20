@@ -1,7 +1,8 @@
 import { SearchDTO } from '@useCases/Search/SearchDTO';
 import { AxiosRequestConfig } from 'axios';
+import { Utils } from 'src/utils/Utils';
 
-export default class Search {
+export class Search {
   public token: string;
   public q: string;
   public type: string;
@@ -57,23 +58,17 @@ export default class Search {
   }
 
   getParams(): AxiosRequestConfig {
-    const { params } = this.params;
-    const objWithNoEmpyParams = { params: {} };
-
-    for (const index in params) {
-      if (params[index] !== undefined && params[index] !== '') {
-        Object.assign(objWithNoEmpyParams.params, { [index]: params[index] });
-      }
-    }
-
-    return objWithNoEmpyParams;
+    const utils = new Utils();
+    return utils.getParamsWithValue(this.params);
   }
 
   isLimitValid(): boolean {
-    return this.limit > 0 && this.limit <= 50;
+    const utils = new Utils();
+    return utils.isAttributeRangeValid(this.limit, 0, 50);
   }
 
   isOffsetValid(): boolean {
-    return this.offset >= 0 && this.offset <= 1000;
+    const utils = new Utils();
+    return utils.isAttributeRangeValid(this.limit, -1, 1000);
   }
 }

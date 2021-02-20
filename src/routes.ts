@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getTokenController } from './useCases/GetToken';
 import { searchController } from '@useCases/Search';
+import { browseController } from '@useCases/Browse';
 import { createPlaylistController } from '@useCases/CreatePlaylist';
 import { addPlaylistItemController } from '@useCases/AddPlaylistItems';
 
@@ -20,6 +21,10 @@ routes.get('/search/album', (request, response) => {
 
 routes.get('/search/track', (request, response) => {
   return searchController.handle(request, response);
+});
+
+routes.get('/browse/categories', (request, response) => {
+  return browseController.handle(request, response);
 });
 
 routes.post('/playlist/create', (request, response) => {
