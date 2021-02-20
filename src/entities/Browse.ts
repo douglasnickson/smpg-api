@@ -9,6 +9,7 @@ export class Browse {
   public locale: string;
   public limit: number;
   public offset: number;
+  public categoryId: string;
   private headers: AxiosRequestConfig;
   private params: URLSearchParams;
 
@@ -18,7 +19,11 @@ export class Browse {
   }
 
   public getUrl(): string {
-    return process.env.API_URL_SPOTIFY + '/browse/categories';
+    const url = process.env.API_URL_SPOTIFY;
+    if (this.categoryId) {
+      return url + '/browse/categories/' + this.categoryId + '/playlists';
+    }
+    return url + '/browse/categories';
   }
 
   public setHeaders(headers: AxiosRequestConfig): void {

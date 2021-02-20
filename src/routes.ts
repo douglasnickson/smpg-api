@@ -24,7 +24,11 @@ routes.get('/search/track', (request, response) => {
 });
 
 routes.get('/browse/categories', (request, response) => {
-  return browseController.handle(request, response);
+  return browseController.handleCategories(request, response);
+});
+
+routes.get('/browse/playlists', (request, response) => {
+  return browseController.handlePlaylists(request, response);
 });
 
 routes.post('/playlist/create', (request, response) => {

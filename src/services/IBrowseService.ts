@@ -3,4 +3,5 @@ import { Response } from 'express';
 
 export interface IBrowseService {
   categories(search: Browse): Promise<Response>;
+  playlists(search: Browse): Promise<Response>;
 }
