@@ -3,7 +3,8 @@ import { getTokenController } from './useCases/GetToken';
 import { searchController } from '@useCases/Search';
 import { browseController } from '@useCases/Browse';
 import { createPlaylistController } from '@useCases/CreatePlaylist';
-import { addPlaylistItemController } from '@useCases/AddPlaylistItems';
+import { addPlaylistItemsController } from '@useCases/AddPlaylistItems';
+import { getPlaylistItemsController } from '@useCases/GetPlaylistItems';
 
 const routes = Router();
 
@@ -36,7 +37,11 @@ routes.post('/playlist/create', (request, response) => {
 });
 
 routes.post('/playlist/item/add', (request, response) => {
-  return addPlaylistItemController.handle(request, response);
+  return addPlaylistItemsController.handle(request, response);
+});
+
+routes.get('/playlist/item/get', (request, response) => {
+  return getPlaylistItemsController.handle(request, response);
 });
 
 export default routes;

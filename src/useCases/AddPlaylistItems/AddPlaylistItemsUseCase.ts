@@ -1,16 +1,17 @@
-import { AddPlaylistItem } from '@entities/AddPlaylistItem';
+import { AddPlaylistItems } from '@entities/AddPlaylistItems';
 import { HeadersRequest } from '@entities/HeadersRequest';
 import { IPlaylistService } from '@services/IPlaylistService';
 import { Response } from 'express';
-import { AddPlaylistItemDTO } from './AddPlaylistItemDTO';
+import { AddPlaylistItemsDTO } from './AddPlaylistItemsDTO';
 
-export class AddPlaylistItemUseCase {
+export class AddPlaylistItemsUseCase {
   constructor(private playlistService: IPlaylistService) {}
 
-  async execute(addPlaylistItemDTO: AddPlaylistItemDTO): Promise<Response> {
-    const addPlaylistItem = new AddPlaylistItem(addPlaylistItemDTO);
-    const headers = new HeadersRequest(addPlaylistItem.token);
-    addPlaylistItem.setHeaders(headers.getJsonHeader());
-    return this.playlistService.addPlaylistItem(addPlaylistItem);
+  async execute(addPlaylistItemsDTO: AddPlaylistItemsDTO): Promise<Response> {
+    const addPlaylistItems = new AddPlaylistItems(addPlaylistItemsDTO);
+    const headers = new HeadersRequest(addPlaylistItems.token);
+    addPlaylistItems.setHeaders(headers.getJsonHeader());
+
+    return this.playlistService.addPlaylistItems(addPlaylistItems);
   }
 }

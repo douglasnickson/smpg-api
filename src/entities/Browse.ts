@@ -44,7 +44,9 @@ export class Browse {
   }
 
   getParams(): URLSearchParams {
-    return this.params;
+    const utils = new Utils();
+    const params = utils.getUrlParamsWithValue(this.params);
+    return params;
   }
 
   isLimitValid(): boolean {

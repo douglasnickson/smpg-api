@@ -1,4 +1,4 @@
-export interface AddPlaylistItemDTO {
+export interface AddPlaylistItemsDTO {
   token: string;
   playlistId: string;
   position: string;

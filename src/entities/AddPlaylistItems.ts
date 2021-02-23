@@ -1,7 +1,7 @@
-import { AddPlaylistItemDTO } from '@useCases/AddPlaylistItems/AddPlaylistItemDTO';
+import { AddPlaylistItemsDTO } from '@useCases/AddPlaylistItems/AddPlaylistItemsDTO';
 import { AxiosRequestConfig } from 'axios';
 
-export class AddPlaylistItem {
+export class AddPlaylistItems {
   public token: string;
   public playlistId: string;
   public position: string;
@@ -9,7 +9,7 @@ export class AddPlaylistItem {
   private headers: AxiosRequestConfig;
   private params: AxiosRequestConfig;
 
-  constructor(addPlaylistItem: AddPlaylistItemDTO) {
+  constructor(addPlaylistItem: AddPlaylistItemsDTO) {
     Object.assign(this, addPlaylistItem);
   }
   public getUrl(): string {
