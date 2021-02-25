@@ -1,4 +1,4 @@
-import { Token } from 'src/entities/Token';
+import { Token } from '@entities/Token';
 import { StreamingServiceTokenAbstract } from '@entities/StreamingServiceTokenAbstract';
 export interface ITokenService {
   getToken(

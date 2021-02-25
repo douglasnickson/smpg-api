@@ -3,7 +3,7 @@ require('dotenv/config');
 import axios from '@services/AxiosService';
 import { StreamingServiceTokenAbstract } from '@entities/StreamingServiceTokenAbstract';
 import { ITokenService } from '@services/ITokenService';
-import { Token } from 'src/entities/Token';
+import { Token } from '@entities/Token';
 
 export class TokenServiceImpl implements ITokenService {
   async getToken(

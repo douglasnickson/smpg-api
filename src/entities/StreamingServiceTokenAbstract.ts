@@ -1,12 +1,12 @@
 import { URLSearchParams } from 'url';
 import { AxiosRequestConfig } from 'axios';
-import { Request } from 'express';
+import { GetTokenDTO } from '@useCases/GetToken/GetTokenDTO';
 
 export abstract class StreamingServiceTokenAbstract {
   public url: string;
   public params: URLSearchParams;
 
-  abstract parseParams(request: Request): URLSearchParams;
+  abstract parseParams(props: GetTokenDTO): URLSearchParams;
   abstract parseUrl(): string;
 
   public setParams(params: URLSearchParams): void {

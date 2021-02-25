@@ -7,7 +7,9 @@ export class GetTokenController {
   constructor(private getToken: GetTokenUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const spotify: StreamingServiceTokenAbstract = new SpotifyToken(request);
+    const spotify: StreamingServiceTokenAbstract = new SpotifyToken(
+      request.body
+    );
     try {
       const token: Token = await this.getToken.execute(spotify);
       return response.status(200).send(token);

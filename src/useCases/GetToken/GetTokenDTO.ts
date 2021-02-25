@@ -1,4 +1,4 @@
-export interface GetTokenRequestDTO {
+export interface GetTokenDTO {
   clientId: string;
   clientSecret: string;
   grantType: string;

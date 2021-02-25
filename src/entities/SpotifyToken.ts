@@ -1,10 +1,10 @@
-import { Request } from 'express';
+import { GetTokenDTO } from '@useCases/GetToken/GetTokenDTO';
 import { URLSearchParams } from 'url';
 import { StreamingServiceTokenAbstract } from './StreamingServiceTokenAbstract';
 export class SpotifyToken extends StreamingServiceTokenAbstract {
-  constructor(request: Request) {
+  constructor(props: GetTokenDTO) {
     super();
-    super.setParams(this.parseParams(request));
+    super.setParams(this.parseParams(props));
     super.setUrl(this.parseUrl());
   }
 
@@ -12,21 +12,14 @@ export class SpotifyToken extends StreamingServiceTokenAbstract {
     return process.env.TOKEN_URL_SPOTIFY;
   }
 
-  parseParams(request: Request): URLSearchParams {
+  parseParams(props: GetTokenDTO): URLSearchParams {
     const params = new URLSearchParams();
-    const {
-      clientId,
-      clientSecret,
-      grantType,
-      redirectUri,
-      code,
-    } = request.body;
 
-    params.append('client_id', clientId);
-    params.append('client_secret', clientSecret);
-    params.append('grant_type', grantType);
-    params.append('redirect_uri', redirectUri);
-    params.append('code', code);
+    params.append('client_id', props.clientId);
+    params.append('client_secret', props.clientSecret);
+    params.append('grant_type', props.grantType);
+    params.append('redirect_uri', props.redirectUri);
+    params.append('code', props.code);
     return params;
   }
 }
