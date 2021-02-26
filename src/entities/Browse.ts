@@ -56,6 +56,6 @@ export class Browse {
 
   isOffsetValid(): boolean {
     const utils = new Utils();
-    return utils.isAttributeRangeValid(this.limit, -1, 1000);
+    return utils.isAttributeRangeValid(this.offset, -1, 1000);
   }
 }

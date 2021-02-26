@@ -29,11 +29,11 @@ export class BrowseUserCase {
 
   private isLimitAndOffsetOk(browse: Browse) {
     if (!browse.isLimitValid()) {
-      throw Error('Limit is not valid, Minimum: 1 and Maximum: 50');
+      throw Error('Limit not valid. Minimum: 1 and Maximum: 50');
     }
 
     if (!browse.isOffsetValid()) {
-      throw Error('Offset is not valid, Minimum: 0 and Maximum: 1000');
+      throw Error('Offset not valid. Minimum: 0 and Maximum: 1000');
     }
   }
 }
