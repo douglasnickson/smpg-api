@@ -17,15 +17,6 @@ export abstract class StreamingServiceTokenAbstract {
     this.url = url;
   }
 
-  public getJsonHeader(): AxiosRequestConfig {
-    const headers = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-    return headers;
-  }
-
   public getFormHeader(): AxiosRequestConfig {
     const headers = {
       headers: {

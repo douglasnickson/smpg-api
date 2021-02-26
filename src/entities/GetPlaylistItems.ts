@@ -1,7 +1,7 @@
-import { GetPlaylistItemsDTO } from '@useCases/GetPlaylistItems/GetPlaylistItemsDTO';
 import { AxiosRequestConfig } from 'axios';
 import { URLSearchParams } from 'url';
-import { Utils } from 'src/utils/Utils';
+import { GetPlaylistItemsDTO } from '@useCases/GetPlaylistItems/GetPlaylistItemsDTO';
+import { Utils } from '@utils/Utils';
 
 export class GetPlaylistItems {
   public token: string;

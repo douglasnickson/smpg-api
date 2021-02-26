@@ -20,6 +20,7 @@ module.exports = {
         '@entities': './src/entities',
         '@services': './src/services',
         '@useCases': './src/useCases',
+        '@utils': './src/utils',
 			}
 		}]
 	],

@@ -1,8 +1,6 @@
-import { SpotifyToken } from '@entities/SpotifyToken';
-import { StreamingServiceTokenAbstract } from '@entities/StreamingServiceTokenAbstract';
-import { TokenServiceImpl } from '@services/implementations/TokenServiceImpl';
+import request from 'supertest';
+import app from '../../app';
 import { GetTokenDTO } from '@useCases/GetToken/GetTokenDTO';
-import { GetTokenUseCase } from '@useCases/GetToken/GetTokenUseCase';
 
 describe('Authentication', () => {
   test('Should receive JWT token when authenticated with valid credentials', async () => {
@@ -10,16 +8,32 @@ describe('Authentication', () => {
       clientId: process.env.CLIENTE_ID,
       clientSecret: process.env.SECRET_ID,
       code:
-        'AQCt7P600ZOgjeFBDY4zqCdvONeJBjxRYDTLGraopzs5AvoQ5S4vXA-sC0IXaW--oYC2A2PRJpkb5lyB6NDJo5vipH9P8gdJ0e_8CR20Xx3yLqycwKJZm8bNBWyDRWPE3ANnHBdlikScxExSEuMo-kbrkyYho9UZ9A',
+        'AQBqSD-1DYDHMKSD4Wrpz_wVf2DkJ9vJIjOfO1Rg7mqTFVtzBk9FHMiNzbf0uJvbMjqWNBEozjLFfUGVlN2dRKOQv6pkp58H70JxzhM1yKcS9lSSWbF4w5_1XpafPUVHimWCDbxlgUo5YcWBBCFsA6ReO2nmgY4IFw',
       grantType: 'authorization_code',
       redirectUri: 'https://insomnia.rest',
     };
-    const streamingService: StreamingServiceTokenAbstract = new SpotifyToken(
-      data
-    );
-    const tokenServiceImpl = new TokenServiceImpl();
-    const getTokenUseCase = new GetTokenUseCase(tokenServiceImpl);
-    const result = await getTokenUseCase.execute(streamingService);
-    expect(result.accessToken).not.toBe('');
+
+    const response = await request(app)
+      .post('/authorization/spotify')
+      .send(data);
+
+    expect(response.status).toBe(400);
+  });
+
+  test('Should receive JWT token when authenticated with valid credentials', async () => {
+    const data: GetTokenDTO = {
+      clientId: process.env.CLIENTE_ID,
+      clientSecret: process.env.SECRET_ID,
+      code:
+        'AQAQI9cPVUkaW-cD7KtWd-gb6hvflroFxWhdZcSHGHPcB33Ihx_C1fSZKXxa-T0uBkE4C6MBGiodnayzeOUEO-gGEMMjl0fq41iaO_4AfN5cMacGLk6oXu1AR6Qagn4PAi64bqeWC7XQvTI6yVRXg99_rRKvd0DS-A',
+      grantType: 'authorization_code',
+      redirectUri: 'https://insomnia.rest',
+    };
+
+    const response = await request(app)
+      .post('/authorization/spotify')
+      .send(data);
+
+    expect(response.status).toBe(200);
   });
 });

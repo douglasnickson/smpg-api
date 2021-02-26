@@ -1,6 +1,6 @@
-import { SearchDTO } from '@useCases/Search/SearchDTO';
 import { AxiosRequestConfig } from 'axios';
-import { Utils } from 'src/utils/Utils';
+import { SearchDTO } from '@useCases/Search/SearchDTO';
+import { Utils } from '@utils/Utils';
 
 export class Search {
   public token: string;
@@ -69,6 +69,6 @@ export class Search {
 
   isOffsetValid(): boolean {
     const utils = new Utils();
-    return utils.isAttributeRangeValid(this.limit, -1, 1000);
+    return utils.isAttributeRangeValid(this.offset, -1, 1000);
   }
 }

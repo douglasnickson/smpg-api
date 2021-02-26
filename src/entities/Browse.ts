@@ -1,7 +1,7 @@
-import { BrowseDTO } from '@useCases/Browse/BrowseDTO';
 import { AxiosRequestConfig } from 'axios';
-import { Utils } from 'src/utils/Utils';
 import { URLSearchParams } from 'url';
+import { BrowseDTO } from '@useCases/Browse/BrowseDTO';
+import { Utils } from '@utils/Utils';
 
 export class Browse {
   public token: string;
