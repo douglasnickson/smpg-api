@@ -25,7 +25,7 @@ describe('Authentication', () => {
       clientId: process.env.CLIENTE_ID,
       clientSecret: process.env.SECRET_ID,
       code:
-        'AQAQI9cPVUkaW-cD7KtWd-gb6hvflroFxWhdZcSHGHPcB33Ihx_C1fSZKXxa-T0uBkE4C6MBGiodnayzeOUEO-gGEMMjl0fq41iaO_4AfN5cMacGLk6oXu1AR6Qagn4PAi64bqeWC7XQvTI6yVRXg99_rRKvd0DS-A',
+        'AQAo_rR61yLxq7iP8i2fkhsdtDEsAWRUN1sZxX_bmUgvmVAm6L9TmkLwgO5dMg-oJhR3_1n1mCQ5SQPnjFtY-2CMU2S4q-0AqT8wp35k8nyHyL_kb_vsoijwXfos0aewF_ZG7agFn0rjPOyFV42RT9VJXh-OSI7BkQ',
       grantType: 'authorization_code',
       redirectUri: 'https://insomnia.rest',
     };
